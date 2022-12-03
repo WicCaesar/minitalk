@@ -61,9 +61,13 @@ BONUSCLIENTSOURCE = client_bonus.c
 BONUSSERVEROBJECT = $(BONUSSERVERSOURCE:.c=.o)
 BONUSCLIENTOBJECT = $(BONUSCLIENTSOURCE:.c=.o)
 
-bonus:	$(LIBFT) $(BONUSSERVEROBJECT) $(BONUSCLIENTOBJECT)
+bonus:	$(BONUSSERVER) $(BONUSCLIENT)
+
+$(BONUSSERVER):	$(LIBFT) $(BONUSSERVEROBJECT)
 	$(COMPILE) $(FLAGS) $(LIBFT) server_bonus.o -o $(BONUSSERVER)
+
+$(BONUSCLIENT):	$(LIBFT) $(BONUSCLIENTOBJECT)
 	$(COMPILE) $(FLAGS) $(LIBFT) client_bonus.o -o $(BONUSCLIENT)
 
 # Ignores files that could eventually be named after any of these rules.
-.PHONY:		all clean fclean re 
+.PHONY:		all clean fclean re
